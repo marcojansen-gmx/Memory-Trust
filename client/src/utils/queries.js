@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const QUERY_THOUGHTS = gql`
+export const QUERY_FOOTPRINTS = gql`
   query thoughts($username: String) {
     thoughts(username: $username) {
       _id
@@ -18,7 +18,7 @@ export const QUERY_THOUGHTS = gql`
   }
 `;
 
-export const QUERY_THOUGHT = gql`
+export const QUERY_FOOTPRINT = gql`
   query thought($id: ID!) {
     thought(_id: $id) {
       _id

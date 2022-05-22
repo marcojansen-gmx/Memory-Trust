@@ -38,7 +38,7 @@ export const ADD_FRIEND = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
+export const ADD_FOOTPRINT = gql`
   mutation addFootprint($footprintText: String!) {
     addFootprint(footprintText: $footprintText) {
       _id

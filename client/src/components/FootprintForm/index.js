@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { ADD_FOOTPRINT } from '../../utils/mutations';
+import { QUERY_FOOTPRINTS, QUERY_ME } from '../../utils/queries';
 
-const ThoughtForm = () => {
+const FootprintForm = () => {
     const [footprintText, setText] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
-    const [addFootprint, { error }] = useMutation(ADD_THOUGHT, {
+    const [addFootprint, { error }] = useMutation(ADD_FOOTPRINT, {
         update(cache, { data: { addFootprint } }) {
           try {
             // could potentially not exist yet, so wrap in a try...catch
-            const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+            const { thoughts } = cache.readQuery({ query: QUERY_FOOTPRINTS });
             cache.writeQuery({
-              query: QUERY_THOUGHTS,
+              query: QUERY_FOOTPRINTS,
               data: { thoughts: [addFootprint, ...thoughts] }
             });
           } catch (e) {
@@ -66,4 +66,4 @@ const ThoughtForm = () => {
     );
 };
 
-export default ThoughtForm;
+export default FootprintForm;
