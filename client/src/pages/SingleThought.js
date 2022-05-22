@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 import ReactionForm from '../components/ReactionForm';
 
 const SingleThought = props => {
-  const { id: thoughtId } = useParams();
+  const { id: footprintId } = useParams();
 
   const { loading, data } = useQuery(QUERY_THOUGHT, {
-    variables: { id: thoughtId }
+    variables: { id: footprintId }
   });
   
   const thought = data?.thought || {};
@@ -34,11 +34,11 @@ const SingleThought = props => {
             thought on {thought.createdAt}
           </p>
           <div className="card-body">
-            <p>{thought.thoughtText}</p>
+            <p>{thought.footprintText}</p>
           </div>
         </div>
         {thought.reactionCount > 0 && <ReactionList reactions={thought.reactions} />}
-        {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
+        {Auth.loggedIn() && <ReactionForm footprintId={thought._id} />}
       </div>
   );
 };

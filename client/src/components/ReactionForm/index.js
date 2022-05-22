@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_REACTION } from '../../utils/mutations';
 
-const ReactionForm = ({ thoughtId }) => {
+const ReactionForm = ({ footprintId }) => {
     const [reactionBody, setBody] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
     const [addReaction, { error }] = useMutation(ADD_REACTION);
@@ -18,7 +18,7 @@ const ReactionForm = ({ thoughtId }) => {
         event.preventDefault();
         try {
             await addReaction({
-                variables: { reactionBody, thoughtId }
+                variables: { reactionBody, footprintId }
             });
             setBody('');
             setCharacterCount(0);

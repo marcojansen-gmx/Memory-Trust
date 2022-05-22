@@ -2,9 +2,9 @@ const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
 const dateFormat = require('../utils/dateFormat');
 
-const thoughtSchema = new Schema(
+const footprintSchema = new Schema(
   {
-    thoughtText: {
+    footprintText: {
       type: String,
       required: 'You need to leave a thought!',
       minlength: 1,
@@ -28,10 +28,10 @@ const thoughtSchema = new Schema(
   }
 );
 
-thoughtSchema.virtual('reactionCount').get(function() {
+footprintSchema.virtual('reactionCount').get(function() {
   return this.reactions.length;
 });
 
-const Thought = model('Thought', thoughtSchema);
+const Thought = model('Thought', footprintSchema);
 
 module.exports = Thought;

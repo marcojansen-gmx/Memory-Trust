@@ -1,5 +1,7 @@
+Pull request test
+
 # MemoryBank
-An APP collaborating all of the accounts user or user's acquaintances have created and constantly forget, with functions notifying the members of the connected network to request support from each other 
+An APP collaborating all of the accounts user or user's acquaintances have created and constantly forget, with functions notifying the members of the connected network to request support from each other
 
 Semantic UI React
 https://react.semantic-ui.com/
