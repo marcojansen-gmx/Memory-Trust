@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const QUERY_FOOTPRINTS = gql`
-  query thoughts($username: String) {
-    thoughts(username: $username) {
+  query footprints($username: String) {
+    footprints(username: $username) {
       _id
       footprintText
       createdAt
@@ -19,8 +19,8 @@ export const QUERY_FOOTPRINTS = gql`
 `;
 
 export const QUERY_FOOTPRINT = gql`
-  query thought($id: ID!) {
-    thought(_id: $id) {
+  query footprint($id: ID!) {
+    footprint(_id: $id) {
       _id
       footprintText
       createdAt
@@ -47,7 +47,7 @@ export const QUERY_USER = gql`
         _id
         username
       }
-      thoughts {
+      footprints {
         _id
         footprintText
         createdAt
@@ -64,7 +64,7 @@ export const QUERY_ME = gql`
       username
       email
       friendCount
-      thoughts {
+      footprints {
         _id
         footprintText
         createdAt

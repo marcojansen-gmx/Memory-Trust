@@ -10,7 +10,7 @@ import FootprintForm from '../components/FootprintForm';
 const Home = () => {
   const { loading, data } = useQuery(QUERY_FOOTPRINTS);
   const { data: userData } = useQuery(QUERY_ME_BASIC);
-  const thoughts = data?.thoughts || [];
+  const footprints = data?.footprints || [];
   const loggedIn = Auth.loggedIn();
   return (
     <main>
@@ -24,7 +24,7 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <FootprintList thoughts={thoughts} title="Some Feed for Thought(s)..." />
+            <FootprintList footprints={footprints} title="Some Feed for Footprint(s)..." />
           )}
         </div>
         {loggedIn && userData ? (

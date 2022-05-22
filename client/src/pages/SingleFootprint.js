@@ -14,7 +14,7 @@ const SingleFootprint = props => {
     variables: { id: footprintId }
   });
   
-  const thought = data?.thought || {};
+  const footprint = data?.footprint || {};
   
   if (loading) {
     return <div>Loading...</div>;
@@ -25,20 +25,20 @@ const SingleFootprint = props => {
         <div className="card mb-3">
           <p className="card-header">
           <Link
-                to={`/profile/${thought.username}`}
+                to={`/profile/${footprint.username}`}
                 style={{ fontWeight: 700 }}
                 className="text-light"
             >
-                {thought.username}
+                {footprint.username}
             </Link>{' '}
-            thought on {thought.createdAt}
+            footprint on {footprint.createdAt}
           </p>
           <div className="card-body">
-            <p>{thought.footprintText}</p>
+            <p>{footprint.footprintText}</p>
           </div>
         </div>
-        {thought.reactionCount > 0 && <ReactionList reactions={thought.reactions} />}
-        {Auth.loggedIn() && <ReactionForm footprintId={thought._id} />}
+        {footprint.reactionCount > 0 && <ReactionList reactions={footprint.reactions} />}
+        {Auth.loggedIn() && <ReactionForm footprintId={footprint._id} />}
       </div>
   );
 };

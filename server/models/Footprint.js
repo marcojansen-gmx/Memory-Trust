@@ -6,7 +6,7 @@ const footprintSchema = new Schema(
   {
     footprintText: {
       type: String,
-      required: 'You need to leave a thought!',
+      required: 'You need to leave a footprint!',
       minlength: 1,
       maxlength: 280
     },
@@ -32,6 +32,6 @@ footprintSchema.virtual('reactionCount').get(function() {
   return this.reactions.length;
 });
 
-const Thought = model('Thought', footprintSchema);
+const Footprint = model('Footprint', footprintSchema);
 
-module.exports = Thought;
+module.exports = Footprint;

@@ -1,10 +1,10 @@
 const faker = require('faker');
 
 const db = require('../config/connection');
-const { Thought, User } = require('../models');
+const { Footprint, User } = require('../models');
 
 db.once('open', async () => {
-  await Thought.deleteMany({});
+  await Footprint.deleteMany({});
   await User.deleteMany({});
 
   // create user data
@@ -43,11 +43,11 @@ db.once('open', async () => {
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { username, _id: userId } = createdUsers.ops[randomUserIndex];
 
-    const createdFootprint = await Thought.create({ footprintText, username });
+    const createdFootprint = await Footprint.create({ footprintText, username });
 
     const updatedUser = await User.updateOne(
       { _id: userId },
-      { $push: { thoughts: createdFootprint._id } }
+      { $push: { footprints: createdFootprint._id } }
     );
 
     createdFootprints.push(createdFootprint);
@@ -63,7 +63,7 @@ db.once('open', async () => {
     const randomFootprintIndex = Math.floor(Math.random() * createdFootprints.length);
     const { _id: footprintId } = createdFootprints[randomFootprintIndex];
 
-    await Thought.updateOne(
+    await Footprint.updateOne(
       { _id: footprintId },
       { $push: { reactions: { reactionBody, username } } },
       { runValidators: true }

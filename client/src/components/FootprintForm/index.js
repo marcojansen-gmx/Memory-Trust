@@ -10,20 +10,20 @@ const FootprintForm = () => {
         update(cache, { data: { addFootprint } }) {
           try {
             // could potentially not exist yet, so wrap in a try...catch
-            const { thoughts } = cache.readQuery({ query: QUERY_FOOTPRINTS });
+            const { footprints } = cache.readQuery({ query: QUERY_FOOTPRINTS });
             cache.writeQuery({
               query: QUERY_FOOTPRINTS,
-              data: { thoughts: [addFootprint, ...thoughts] }
+              data: { footprints: [addFootprint, ...footprints] }
             });
           } catch (e) {
             console.error(e);
           }
       
-          // update me object's cache, appending new thought to the end of the array
+          // update me object's cache, appending new footprint to the end of the array
           const { me } = cache.readQuery({ query: QUERY_ME });
           cache.writeQuery({
             query: QUERY_ME,
-            data: { me: { ...me, thoughts: [...me.thoughts, addFootprint] } }
+            data: { me: { ...me, footprints: [...me.footprints, addFootprint] } }
           });
         }
       });
@@ -56,7 +56,7 @@ const FootprintForm = () => {
             </p>
             <form className="flex-row justify-center justify-space-between-md align-stretch" onSubmit={handleFormSubmit}>
                 <textarea 
-                    placeholder="Here's a new thought..." 
+                    placeholder="Here's a new footprint..." 
                     value={footprintText}
                     className="form-input col-12 col-md-9"
                     onChange={handleChange}></textarea>

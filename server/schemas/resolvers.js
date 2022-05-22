@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User, Footprint } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -8,30 +8,30 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                 .select('-__v -password')
-                .populate('thoughts')
+                .populate('footprints')
                 .populate('friends');
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
         },
-        thoughts: async (parent, { username }) => {
+        footprints: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Thought.find(params).sort({ createdAt: -1 });
+            return Footprint.find(params).sort({ createdAt: -1 });
         },
-        thought: async (parent, { _id }) => {
-            return Thought.findOne({ _id });
+        footprint: async (parent, { _id }) => {
+            return Footprint.findOne({ _id });
         },
         users: async () => {
             return User.find()
             .select('-__v -password')
             .populate('friends')
-            .populate('thoughts')
+            .populate('footprints')
         },
         user: async (parent, { username }) => {
             return User.findOne({ username })
             .select('-__v -password')
             .populate('friends')
-            .populate('thoughts')
+            .populate('footprints')
         }
     },
     Mutation: {
@@ -54,24 +54,24 @@ const resolvers = {
         },
         addFootprint: async (parent, args, context) => {
             if (context.user) {
-                const thought = await Thought.create({ ...args, username: context.user.username });
+                const footprint = await Footprint.create({ ...args, username: context.user.username });
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { thoughts: thought._id } },
+                    { $push: { footprints: footprint._id } },
                     { new: true }
                 );
-                return thought;
+                return footprint;
             }
             throw new AuthenticationError('You need to be logged in!');
         },
         addReaction: async (parent, {footprintId, reactionBody}, context) => {
             if (context.user) {
-                const updatedThought = await Thought.findOneAndUpdate(
+                const updatedFootprint = await Footprint.findOneAndUpdate(
                     { _id: footprintId} ,
                     { $push: {reactions: { reactionBody, username: context.user.username } } },
                     { new: true, runValidators: true }
                 );
-                return updatedThought;
+                return updatedFootprint;
             }
             throw new AuthenticationError('You need to be logged in!');
         },

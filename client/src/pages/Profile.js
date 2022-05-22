@@ -61,7 +61,7 @@ const Profile = () => {
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
-          <FootprintList thoughts={user.thoughts} title={`${user.username}'s thoughts...`} />
+          <FootprintList footprints={user.footprints} title={`${user.username}'s footprints...`} />
         </div>
 
         <div className="col-12 col-lg-3 mb-3">

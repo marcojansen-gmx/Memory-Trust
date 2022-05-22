@@ -18,6 +18,9 @@ https://www.npmjs.com/package/jsonwebtoken
 bcrypt
 https://www.npmjs.com/package/bcrypt
 
+Visual Studio Code Tips and Tricks
+https://code.visualstudio.com/docs/getstarted/tips-and-tricks
+
 
 # Pass JWT to Resolver with Context (Server-side)
 

@@ -1,33 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FootprintList = ({ thoughts, title }) => {
-  if (!thoughts.length) {
-    return <h3>No Thoughts Yet</h3>;
+const FootprintList = ({ footprints, title }) => {
+  if (!footprints.length) {
+    return <h3>No Footprints Yet</h3>;
   }
 
   return (
     <div>
       <h3>{title}</h3>
-      {thoughts &&
-        thoughts.map(thought => (
-          <div key={thought._id} className="card mb-3">
+      {footprints &&
+        footprints.map(footprint => (
+          <div key={footprint._id} className="card mb-3">
             <p className="card-header">
             <Link
-                to={`/profile/${thought.username}`}
+                to={`/profile/${footprint.username}`}
                 style={{ fontWeight: 700 }}
                 className="text-light"
             >
-                {thought.username}
+                {footprint.username}
             </Link>{' '}
-            thought on {thought.createdAt}
+            footprint on {footprint.createdAt}
             </p>
             <div className="card-body">
-                <Link to={`/thought/${thought._id}`}>
-                    <p>{thought.footprintText}</p>
+                <Link to={`/footprint/${footprint._id}`}>
+                    <p>{footprint.footprintText}</p>
                     <p className="mb-0">
-                    Reactions: {thought.reactionCount} || Click to{' '}
-                    {thought.reactionCount ? 'see' : 'start'} the discussion!
+                    Reactions: {footprint.reactionCount} || Click to{' '}
+                    {footprint.reactionCount ? 'see' : 'start'} the discussion!
                     </p>
                 </Link>
             </div>
