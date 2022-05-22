@@ -35,22 +35,22 @@ db.once('open', async () => {
     await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
   }
 
-  // create thoughts
-  let createdThoughts = [];
+  // create footprints
+  let createdFootprints = [];
   for (let i = 0; i < 100; i += 1) {
-    const thoughtText = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+    const footprintText = faker.lorem.words(Math.round(Math.random() * 20) + 1);
 
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { username, _id: userId } = createdUsers.ops[randomUserIndex];
 
-    const createdThought = await Thought.create({ thoughtText, username });
+    const createdFootprint = await Thought.create({ footprintText, username });
 
     const updatedUser = await User.updateOne(
       { _id: userId },
-      { $push: { thoughts: createdThought._id } }
+      { $push: { thoughts: createdFootprint._id } }
     );
 
-    createdThoughts.push(createdThought);
+    createdFootprints.push(createdFootprint);
   }
 
   // create reactions
@@ -60,11 +60,11 @@ db.once('open', async () => {
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { username } = createdUsers.ops[randomUserIndex];
 
-    const randomThoughtIndex = Math.floor(Math.random() * createdThoughts.length);
-    const { _id: thoughtId } = createdThoughts[randomThoughtIndex];
+    const randomFootprintIndex = Math.floor(Math.random() * createdFootprints.length);
+    const { _id: footprintId } = createdFootprints[randomFootprintIndex];
 
     await Thought.updateOne(
-      { _id: thoughtId },
+      { _id: footprintId },
       { $push: { reactions: { reactionBody, username } } },
       { runValidators: true }
     );

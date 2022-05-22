@@ -52,7 +52,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addThought: async (parent, args, context) => {
+        addFootprint: async (parent, args, context) => {
             if (context.user) {
                 const thought = await Thought.create({ ...args, username: context.user.username });
                 await User.findByIdAndUpdate(
@@ -64,10 +64,10 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        addReaction: async (parent, {thoughtId, reactionBody}, context) => {
+        addReaction: async (parent, {footprintId, reactionBody}, context) => {
             if (context.user) {
                 const updatedThought = await Thought.findOneAndUpdate(
-                    { _id: thoughtId} ,
+                    { _id: footprintId} ,
                     { $push: {reactions: { reactionBody, username: context.user.username } } },
                     { new: true, runValidators: true }
                 );

@@ -39,10 +39,10 @@ export const ADD_FRIEND = gql`
 `;
 
 export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+  mutation addFootprint($footprintText: String!) {
+    addFootprint(footprintText: $footprintText) {
       _id
-      thoughtText
+      footprintText
       createdAt
       username
       reactionCount
@@ -54,8 +54,8 @@ export const ADD_THOUGHT = gql`
 `;
 
 export const ADD_REACTION = gql`
-  mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
-    addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
+  mutation addReaction($footprintId: ID!, $reactionBody: String!) {
+    addReaction(footprintId: $footprintId, reactionBody: $reactionBody) {
       _id
       reactionCount
       reactions {
