@@ -30,15 +30,17 @@ const FootprintForm = () => {
       });
 
     const handleChange = event => {
+
+
         if (event.target.value.length <= 280) {
             setText(event.target.value);
-            setPlatform(event.target.value);
             setCharacterCount(event.target.value.length);
         }
     }
 
     const handleFormSubmit = async event => {
         event.preventDefault();
+
         try {
             await addFootprint({
                 variables: { footprintText, platform }
@@ -67,7 +69,7 @@ const FootprintForm = () => {
                     placeholder="Here's the platform..." 
                     value={platform}
                     className="form-input col-12 col-md-9"
-                    onChange={handleChange}></textarea>
+                    onChange={(event) => setPlatform(event.target.value)}></textarea>
                 <button className="btn col-12 col-md-3" type="submit">Submit</button>
             </form>
         </div>
