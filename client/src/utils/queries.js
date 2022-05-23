@@ -5,7 +5,7 @@ export const QUERY_FOOTPRINTS = gql`
     footprints(username: $username) {
       _id
       footprintText
-      platform
+      platForm
       createdAt
       username
       reactionCount
@@ -24,7 +24,7 @@ export const QUERY_FOOTPRINT = gql`
     footprint(_id: $id) {
       _id
       footprintText
-      platform
+      platForm
       createdAt
       username
       reactionCount
@@ -52,7 +52,7 @@ export const QUERY_USER = gql`
       footprints {
         _id
         footprintText
-        platform
+        platForm
         createdAt
         reactionCount
       }
@@ -70,7 +70,7 @@ export const QUERY_ME = gql`
       footprints {
         _id
         footprintText
-        platform
+        platForm
         createdAt
         reactionCount
         reactions {

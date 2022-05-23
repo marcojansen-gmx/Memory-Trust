@@ -12,25 +12,17 @@ const FootprintList = ({ footprints, title }) => {
       {footprints &&
         footprints.map(footprint => (
           <div key={footprint._id} className="card mb-3">
-            {footprint.username}
-                <Link to={`/footprint/${footprint._id}`}
-                                style={{ fontWeight: 700 }}
-                                className="text-light">      
-                  <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">
-                      <span>{footprint.platForm}</span>
-                      {(
-                        <button
-                          className="btn btn-sm btn-danger ml-auto"
-                          //onClick={() => handleremoveFootprint(footprint.platForm)}
-                        >
-                          X
-                        </button>
-                      )}
-                  </h4>
-                </Link>{' '}
+            <p className="card-header">
+            <Link
+                to={`/profile/${footprint.username}`}
+                style={{ fontWeight: 700 }}
+                className="text-light"
+            >
+                {footprint.username}
+            </Link>{' '}
             footprint on {footprint.createdAt}
-          </div>))}
-            {/* <div className="card-body">
+            </p>
+            <div className="card-body">
                 <Link to={`/footprint/${footprint._id}`}>
                     <p><strong>Platform: </strong>{footprint.platForm}</p>
                     <p><strong>More about it: </strong>{footprint.footprintText}</p>
@@ -39,7 +31,9 @@ const FootprintList = ({ footprints, title }) => {
                     {footprint.reactionCount ? 'see' : 'start'} the discussion!
                     </p>
                 </Link>
-        </div> */}
+            </div>
+          </div>
+        ))}
     </div>
   );
 };

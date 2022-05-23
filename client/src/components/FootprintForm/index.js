@@ -5,7 +5,7 @@ import { QUERY_FOOTPRINTS, QUERY_ME } from '../../utils/queries';
 
 const FootprintForm = () => {
     const [footprintText, setText] = useState('');
-    const [platform, setPlatform] = useState('');
+    const [platForm, setplatForm] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
     const [addFootprint, { error }] = useMutation(ADD_FOOTPRINT, {
         update(cache, { data: { addFootprint } }) {
@@ -43,10 +43,10 @@ const FootprintForm = () => {
 
         try {
             await addFootprint({
-                variables: { footprintText, platform }
+                variables: { footprintText, platForm }
             });
             setText('');
-            setPlatform('');
+            setplatForm('');
             setCharacterCount(0);
         } catch(e) {
             console.error(e);
@@ -55,23 +55,23 @@ const FootprintForm = () => {
 
     return (
         <div>
+            <form className="flex-row justify-center justify-space-between-md align-stretch" onSubmit={handleFormSubmit}>
+                <textarea 
+                    placeholder="Here's the platForm..." 
+                    value={platForm}
+                    className="form-input col-12 col-md-9"
+                    onChange={(event) => setplatForm(event.target.value)}></textarea>
+                <button className="btn col-12 col-md-3" type="submit">Submit</button>
+                <textarea 
+                    placeholder="Here's more info about this footprint..." 
+                    value={footprintText}
+                    className="form-input col-12 col-md-9"
+                    onChange={handleChange}></textarea>
+            </form>
             <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}>
                 Character Count: {characterCount}/280
                 {error && <span className="ml-2">Something went wrong...</span>}
             </p>
-            <form className="flex-row justify-center justify-space-between-md align-stretch" onSubmit={handleFormSubmit}>
-                <textarea 
-                    placeholder="Here's a new footprint..." 
-                    value={footprintText}
-                    className="form-input col-12 col-md-9"
-                    onChange={handleChange}></textarea>
-                <textarea 
-                    placeholder="Here's the platform..." 
-                    value={platform}
-                    className="form-input col-12 col-md-9"
-                    onChange={(event) => setPlatform(event.target.value)}></textarea>
-                <button className="btn col-12 col-md-3" type="submit">Submit</button>
-            </form>
         </div>
     );
 };

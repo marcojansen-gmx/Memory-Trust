@@ -39,11 +39,11 @@ export const ADD_FRIEND = gql`
 `;
 
 export const ADD_FOOTPRINT = gql`
-  mutation addFootprint($footprintText: String!, $platform: String!) {
-    addFootprint(footprintText: $footprintText, platform: $platform) {
+  mutation addFootprint($footprintText: String!, $platForm: String!) {
+    addFootprint(footprintText: $footprintText, platForm: $platForm) {
       _id
       footprintText
-      platform
+      platForm
       createdAt
       username
       reactionCount

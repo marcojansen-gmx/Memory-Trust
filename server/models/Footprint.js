@@ -10,7 +10,7 @@ const footprintSchema = new Schema(
       minlength: 1,
       maxlength: 280
     },
-    platform: {
+    platForm: {
       type: String,
       required: true,
       trim: true,
