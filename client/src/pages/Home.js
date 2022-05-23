@@ -20,11 +20,12 @@ const Home = () => {
             <FootprintForm />
           </div>
         )}
+        {!loggedIn && (<div>Login for Some Feed for Footprint(s)...</div>)}
         <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
-          {loading ? (
+          { loading ? (
             <div>Loading...</div>
           ) : (
-            <FootprintList footprints={footprints} title="Some Feed for Footprint(s)..." />
+            loggedIn && <FootprintList footprints={footprints} title="Some Feed for Footprint(s)..." />
           )}
         </div>
         {loggedIn && userData ? (
