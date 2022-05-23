@@ -5,6 +5,7 @@ import { QUERY_FOOTPRINTS, QUERY_ME } from '../../utils/queries';
 
 const FootprintForm = () => {
     const [footprintText, setText] = useState('');
+    const [platform, setPlatform] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
     const [addFootprint, { error }] = useMutation(ADD_FOOTPRINT, {
         update(cache, { data: { addFootprint } }) {
@@ -31,6 +32,7 @@ const FootprintForm = () => {
     const handleChange = event => {
         if (event.target.value.length <= 280) {
             setText(event.target.value);
+            setPlatform(event.target.value);
             setCharacterCount(event.target.value.length);
         }
     }
@@ -39,9 +41,10 @@ const FootprintForm = () => {
         event.preventDefault();
         try {
             await addFootprint({
-                variables: { footprintText }
+                variables: { footprintText, platform }
             });
             setText('');
+            setPlatform('');
             setCharacterCount(0);
         } catch(e) {
             console.error(e);
@@ -58,6 +61,11 @@ const FootprintForm = () => {
                 <textarea 
                     placeholder="Here's a new footprint..." 
                     value={footprintText}
+                    className="form-input col-12 col-md-9"
+                    onChange={handleChange}></textarea>
+                <textarea 
+                    placeholder="Here's the platform..." 
+                    value={platform}
                     className="form-input col-12 col-md-9"
                     onChange={handleChange}></textarea>
                 <button className="btn col-12 col-md-3" type="submit">Submit</button>

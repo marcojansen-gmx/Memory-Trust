@@ -35,6 +35,7 @@ const SingleFootprint = props => {
           </p>
           <div className="card-body">
             <p>{footprint.footprintText}</p>
+            <p>{footprint.platform}</p>
           </div>
         </div>
         {footprint.reactionCount > 0 && <ReactionList reactions={footprint.reactions} />}

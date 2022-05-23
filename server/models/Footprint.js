@@ -10,6 +10,11 @@ const footprintSchema = new Schema(
       minlength: 1,
       maxlength: 280
     },
+    platform: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now,

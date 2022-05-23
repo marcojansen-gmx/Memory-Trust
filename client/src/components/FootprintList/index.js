@@ -25,6 +25,7 @@ const FootprintList = ({ footprints, title }) => {
             <div className="card-body">
                 <Link to={`/footprint/${footprint._id}`}>
                     <p>{footprint.footprintText}</p>
+                    <p>{footprint.platform}</p>
                     <p className="mb-0">
                     Reactions: {footprint.reactionCount} || Click to{' '}
                     {footprint.reactionCount ? 'see' : 'start'} the discussion!
