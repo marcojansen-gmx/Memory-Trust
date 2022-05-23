@@ -25,6 +25,7 @@ const FootprintList = ({ footprints, title }) => {
             <div className="card-body">
                 <Link to={`/footprint/${footprint._id}`}>
                     <p><strong>Platform: </strong>{footprint.platForm}</p>
+                    <p><strong>password: </strong> {footprint.passWord}</p>
                     <p><strong>More about it: </strong>{footprint.footprintText}</p>
                     <p className="mb-0">
                     Reactions: {footprint.reactionCount} || Click to{' '}

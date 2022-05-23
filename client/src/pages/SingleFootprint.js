@@ -35,6 +35,7 @@ const SingleFootprint = props => {
           </p>
           <div className="card-body">
             <p><strong>Platform: </strong> {footprint.platForm}</p>
+            <p><strong>password: </strong> {footprint.passWord}</p>
             <p><strong>More about this: </strong> {footprint.footprintText}</p>
           </div>
         </div>

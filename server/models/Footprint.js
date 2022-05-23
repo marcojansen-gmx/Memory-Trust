@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
 const dateFormat = require('../utils/dateFormat');
+const bcrypt = require('bcrypt');
 
 const footprintSchema = new Schema(
   {
@@ -14,6 +15,10 @@ const footprintSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    passWord: {
+      type: String,
+      required: true,
     },
     createdAt: {
       type: Date,
@@ -35,6 +40,16 @@ const footprintSchema = new Schema(
 
 footprintSchema.virtual('reactionCount').get(function() {
   return this.reactions.length;
+});
+
+//hash user password
+footprintSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('passWord')) {
+    const saltRounds = 10;
+    this.passWord = await bcrypt.hash(this.passWord, saltRounds);
+  }
+
+  next();
 });
 
 const Footprint = model('Footprint', footprintSchema);

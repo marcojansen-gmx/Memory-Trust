@@ -6,6 +6,7 @@ export const QUERY_FOOTPRINTS = gql`
       _id
       footprintText
       platForm
+      passWord
       createdAt
       username
       reactionCount
@@ -25,6 +26,7 @@ export const QUERY_FOOTPRINT = gql`
       _id
       footprintText
       platForm
+      passWord
       createdAt
       username
       reactionCount
@@ -53,6 +55,7 @@ export const QUERY_USER = gql`
         _id
         footprintText
         platForm
+        passWord
         createdAt
         reactionCount
       }
@@ -71,6 +74,7 @@ export const QUERY_ME = gql`
         _id
         footprintText
         platForm
+        passWord
         createdAt
         reactionCount
         reactions {

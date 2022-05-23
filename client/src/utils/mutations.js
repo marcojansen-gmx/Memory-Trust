@@ -39,11 +39,12 @@ export const ADD_FRIEND = gql`
 `;
 
 export const ADD_FOOTPRINT = gql`
-  mutation addFootprint($footprintText: String!, $platForm: String!) {
-    addFootprint(footprintText: $footprintText, platForm: $platForm) {
+  mutation addFootprint($footprintText: String!, $platForm: String!, $passWord: String!) {
+    addFootprint(footprintText: $footprintText, platForm: $platForm, passWord: $passWord) {
       _id
       footprintText
       platForm
+      passWord
       createdAt
       username
       reactionCount
@@ -70,11 +71,12 @@ export const ADD_REACTION = gql`
 `;
 
 /* export const REMOVE_FOOTPRINT = gql`
-  mutation removeFootprint($footprintText: String!, $platForm: String!) {
-    removeFootprint(footprintText: $footprintText, platForm: $platForm) {
+  mutation removeFootprint($footprintText: String!, $platForm: String!, $passWord: String!) {
+    removeFootprint(footprintText: $footprintText, platForm: $platForm, passWord: $passWord) {
       _id
       footprintText
       platForm
+      passWord
       createdAt
       username
       reactionCount

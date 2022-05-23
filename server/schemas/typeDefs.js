@@ -7,6 +7,7 @@ const typeDefs = gql`
         _id: ID
         footprintText: String
         platForm: String
+        passWord: String
         createdAt: String
         username: String
         reactionCount: Int
@@ -36,7 +37,7 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        addFootprint(footprintText: String!, platForm: String!): Footprint
+        addFootprint(footprintText: String!, platForm: String!, passWord: String!): Footprint
         addReaction(footprintId: ID!, reactionBody: String!): Footprint
         addFriend(friendId: ID!): User
     }
@@ -46,7 +47,7 @@ const typeDefs = gql`
     }
 `;
 
-// removeFootprint(footprintText: String!, platForm: String!): Footprint
+// removeFootprint(footprintText: String!, platForm: String!, passWord: String!): Footprint
 
 
 // export typeDefs

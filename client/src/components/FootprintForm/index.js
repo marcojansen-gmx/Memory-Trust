@@ -6,6 +6,8 @@ import { QUERY_FOOTPRINTS, QUERY_ME } from '../../utils/queries';
 const FootprintForm = () => {
     const [footprintText, setText] = useState('');
     const [platForm, setplatForm] = useState('');
+    const [passWord, setpassWord] = useState('');
+
     const [characterCount, setCharacterCount] = useState(0);
     const [addFootprint, { error }] = useMutation(ADD_FOOTPRINT, {
         update(cache, { data: { addFootprint } }) {
@@ -43,10 +45,11 @@ const FootprintForm = () => {
 
         try {
             await addFootprint({
-                variables: { footprintText, platForm }
+                variables: { footprintText, platForm, passWord }
             });
             setText('');
             setplatForm('');
+            setpassWord('');
             setCharacterCount(0);
         } catch(e) {
             console.error(e);
@@ -56,17 +59,23 @@ const FootprintForm = () => {
     return (
         <div>
             <form className="flex-row justify-center justify-space-between-md align-stretch" onSubmit={handleFormSubmit}>
-                <textarea 
-                    placeholder="Here's the platForm..." 
+                <input 
+                    placeholder="Here's the platform..." 
                     value={platForm}
                     className="form-input col-12 col-md-9"
-                    onChange={(event) => setplatForm(event.target.value)}></textarea>
-                <button className="btn col-12 col-md-3" type="submit">Submit</button>
+                    onChange={(event) => setplatForm(event.target.value)}></input>
+                <input 
+                    placeholder="Here's the password"
+                    /* type="passWord" */
+                    value={passWord}
+                    className="form-input col-12 col-md-9"
+                    onChange={(event) => setpassWord(event.target.value)}></input>
                 <textarea 
                     placeholder="Here's more info about this footprint..." 
                     value={footprintText}
                     className="form-input col-12 col-md-9"
                     onChange={handleChange}></textarea>
+                <button className="btn col-12 col-md-3" type="submit">Submit</button>
             </form>
             <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}>
                 Character Count: {characterCount}/280

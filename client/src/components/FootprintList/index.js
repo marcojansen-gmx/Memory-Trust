@@ -1,7 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//import { useMutation } from '@apollo/react-hooks';
+//import { QUERY_ME } from '../utils/queries';
+
+//import { REMOVE_FOOTPRINT } from '../../utils/mutations';
 
 const FootprintList = ({ footprints, title }) => {
+
+    {/*const [removeFootprint, { error }] = useMutation(REMOVE_FOOTPRINT, {
+    update(cache, { data: { removeFootprint } }) {
+      try {
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: removeFootprint },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
+
+  const handleremoveFootprint = async (footprint) => {
+    try {
+      const { data } = await removeFootprint({
+        variables: { footprint },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };*/}
 
   if (!footprints.length) {
     return <h3>No Footprints Yet</h3>;
@@ -22,6 +49,9 @@ const FootprintList = ({ footprints, title }) => {
                   </h4>
                 </Link>{' '}
             footprint on {footprint.createdAt}
+            <button className="btn btn-sm btn-danger ml-auto"
+                //onClick={() => handleremoveFootprint(footprint.platForm)}
+                >X</button>
           </div>))}
 
           {/*{footprints &&
@@ -40,6 +70,7 @@ const FootprintList = ({ footprints, title }) => {
             <div className="card-body">
                 <Link to={`/footprint/${footprint._id}`}>
                     <p><strong>Platform: </strong>{footprint.platForm}</p>
+                    <p><strong>password: </strong> {footprint.passWord}</p>
                     <p><strong>More about it: </strong>{footprint.footprintText}</p>
                     <p className="mb-0">
                     Reactions: {footprint.reactionCount} || Click to{' '}
