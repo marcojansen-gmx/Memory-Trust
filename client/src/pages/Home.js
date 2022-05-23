@@ -1,30 +1,31 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
+import { QUERY_FOOTPRINTS, QUERY_ME_BASIC } from '../utils/queries';
 import Auth from '../utils/auth';
 
-import ThoughtList from '../components/ThoughtList';
+import FootprintList from '../components/FootprintList';
 import FriendList from '../components/FriendList';
-import ThoughtForm from '../components/ThoughtForm';
+import FootprintForm from '../components/FootprintForm';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, data } = useQuery(QUERY_FOOTPRINTS);
   const { data: userData } = useQuery(QUERY_ME_BASIC);
-  const thoughts = data?.thoughts || [];
+  const footprints = data?.footprints || [];
   const loggedIn = Auth.loggedIn();
   return (
     <main>
       <div className='flex-row justify-space-between'>
         {loggedIn && (
           <div className="col-12 mb-3">
-            <ThoughtForm />
+            <FootprintForm />
           </div>
         )}
+        {!loggedIn && (<div>Login for Some Feed for Footprint(s)...</div>)}
         <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
-          {loading ? (
+          { loading ? (
             <div>Loading...</div>
           ) : (
-            <ThoughtList thoughts={thoughts} title="Some Feed for Thought(s)..." />
+            loggedIn && <FootprintList footprints={footprints} title="Some Feed for Footprint(s)..." />
           )}
         </div>
         {loggedIn && userData ? (

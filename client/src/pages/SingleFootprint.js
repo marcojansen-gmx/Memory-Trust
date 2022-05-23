@@ -1,20 +1,20 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_THOUGHT } from '../utils/queries';
+import { QUERY_FOOTPRINT } from '../utils/queries';
 import Auth from '../utils/auth'
 import ReactionList from '../components/ReactionList';
 import { Link } from 'react-router-dom';
 import ReactionForm from '../components/ReactionForm';
 
-const SingleThought = props => {
+const SingleFootprint = props => {
   const { id: footprintId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_THOUGHT, {
+  const { loading, data } = useQuery(QUERY_FOOTPRINT, {
     variables: { id: footprintId }
   });
   
-  const thought = data?.thought || {};
+  const footprint = data?.footprint || {};
   
   if (loading) {
     return <div>Loading...</div>;
@@ -25,22 +25,24 @@ const SingleThought = props => {
         <div className="card mb-3">
           <p className="card-header">
           <Link
-                to={`/profile/${thought.username}`}
+                to={`/profile/${footprint.username}`}
                 style={{ fontWeight: 700 }}
                 className="text-light"
             >
-                {thought.username}
+                {footprint.username}
             </Link>{' '}
-            thought on {thought.createdAt}
+            footprint on {footprint.createdAt}
           </p>
           <div className="card-body">
-            <p>{thought.footprintText}</p>
+            <p><strong>Platform: </strong> {footprint.platForm}</p>
+            <p><strong>password: </strong> {footprint.passWord}</p>
+            <p><strong>More about this: </strong> {footprint.footprintText}</p>
           </div>
         </div>
-        {thought.reactionCount > 0 && <ReactionList reactions={thought.reactions} />}
-        {Auth.loggedIn() && <ReactionForm footprintId={thought._id} />}
+        {footprint.reactionCount > 0 && <ReactionList reactions={footprint.reactions} />}
+        {Auth.loggedIn() && <ReactionForm footprintId={footprint._id} />}
       </div>
   );
 };
 
-export default SingleThought;
+export default SingleFootprint;

@@ -3,9 +3,11 @@ const { gql } = require('apollo-server-express');
 
 // create typeDefs
 const typeDefs = gql`
-    type Thought {
+    type Footprint {
         _id: ID
         footprintText: String
+        platForm: String
+        passWord: String
         createdAt: String
         username: String
         reactionCount: Int
@@ -22,21 +24,21 @@ const typeDefs = gql`
         username: String
         email: String
         friendCount: Int
-        thoughts: [Thought]
+        footprints: [Footprint]
         friends: [User]
     }
     type Query {
         me: User
         users: [User]
         user(username: String!): User
-        thoughts(username: String): [Thought]
-        thought(_id: ID!): Thought
+        footprints(username: String): [Footprint]
+        footprint(_id: ID!): Footprint
     }
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        addFootprint(footprintText: String!): Thought
-        addReaction(footprintId: ID!, reactionBody: String!): Thought
+        addFootprint(footprintText: String!, platForm: String!, passWord: String!): Footprint
+        addReaction(footprintId: ID!, reactionBody: String!): Footprint
         addFriend(friendId: ID!): User
     }
     type Auth {
@@ -44,6 +46,9 @@ const typeDefs = gql`
         user: User
     }
 `;
+
+// removeFootprint(footprintText: String!, platForm: String!, passWord: String!): Footprint
+
 
 // export typeDefs
 module.exports = typeDefs;

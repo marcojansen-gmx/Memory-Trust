@@ -38,11 +38,13 @@ export const ADD_FRIEND = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addFootprint($footprintText: String!) {
-    addFootprint(footprintText: $footprintText) {
+export const ADD_FOOTPRINT = gql`
+  mutation addFootprint($footprintText: String!, $platForm: String!, $passWord: String!) {
+    addFootprint(footprintText: $footprintText, platForm: $platForm, passWord: $passWord) {
       _id
       footprintText
+      platForm
+      passWord
       createdAt
       username
       reactionCount
@@ -67,3 +69,20 @@ export const ADD_REACTION = gql`
     }
   }
 `;
+
+/* export const REMOVE_FOOTPRINT = gql`
+  mutation removeFootprint($footprintText: String!, $platForm: String!, $passWord: String!) {
+    removeFootprint(footprintText: $footprintText, platForm: $platForm, passWord: $passWord) {
+      _id
+      footprintText
+      platForm
+      passWord
+      createdAt
+      username
+      reactionCount
+      reactions {
+        _id
+      }
+    }
+  }
+`;*/

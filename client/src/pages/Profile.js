@@ -3,13 +3,14 @@ import { Redirect, useParams } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
-import ThoughtList from '../components/ThoughtList';
+import FootprintList from '../components/FootprintList';
 import FriendList from '../components/FriendList';
-import ThoughtForm from '../components/ThoughtForm';
+import FootprintForm from '../components/FootprintForm';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import { ADD_FRIEND } from '../utils/mutations';
+
 
 const Profile = () => {
   const { username: userParam } = useParams();
@@ -61,7 +62,7 @@ const Profile = () => {
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
-          <ThoughtList thoughts={user.thoughts} title={`${user.username}'s thoughts...`} />
+          <FootprintList footprints={user.footprints} title={`${user.username}'s footprints...`} button={`X`}/>
         </div>
 
         <div className="col-12 col-lg-3 mb-3">
@@ -72,7 +73,7 @@ const Profile = () => {
           />
         </div>
       </div>
-      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
+      <div className="mb-3">{!userParam && <FootprintForm />}</div>
     </div>
   );
 };
