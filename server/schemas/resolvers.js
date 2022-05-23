@@ -85,7 +85,21 @@ const resolvers = {
                 return updatedUser;
             }
             throw new AuthenticationError('You need to be logged in!')
-        }
+        },
+        /*
+                removeFootprint: async (parent, args, context) => {
+            if (context.user) {
+                const footprint = await Footprint.remove({ ...args, username: context.user.username });
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { footprints: footprint._id } },
+                    { new: true }
+                );
+                return footprint;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+    */
     }
 };
 

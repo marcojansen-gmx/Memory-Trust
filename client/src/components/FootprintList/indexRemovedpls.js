@@ -39,3 +39,31 @@ const FootprintList = ({ footprints, title }) => {
 };
 
 export default FootprintList;
+
+/*
+
+  const [removeFootprint, { error }] = useMutation(REMOVE_FOOTPRINT, {
+    update(cache, { data: { removeFootprint } }) {
+      try {
+        cache.writeQuery({
+          query: QUERY_FOOTPRINT,
+          data: { me: removeFootprint },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
+
+  const handleremoveFootprint = async (footprint) => {
+    try {
+      const { data } = await removeFootprint({
+        variables: { footprint },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+*/

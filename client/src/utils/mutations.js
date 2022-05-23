@@ -68,3 +68,19 @@ export const ADD_REACTION = gql`
     }
   }
 `;
+
+/* export const REMOVE_FOOTPRINT = gql`
+  mutation removeFootprint($footprintText: String!, $platForm: String!) {
+    removeFootprint(footprintText: $footprintText, platForm: $platForm) {
+      _id
+      footprintText
+      platForm
+      createdAt
+      username
+      reactionCount
+      reactions {
+        _id
+      }
+    }
+  }
+`;*/

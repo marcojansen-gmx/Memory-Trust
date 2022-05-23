@@ -46,5 +46,8 @@ const typeDefs = gql`
     }
 `;
 
+// removeFootprint(footprintText: String!, platForm: String!): Footprint
+
+
 // export typeDefs
 module.exports = typeDefs;
